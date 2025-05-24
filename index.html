@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload to Supabase</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Upload Your Drawing</h2>
+
+    <label for="fileInput" class="custom-button">Choose PNG File</label>
+<br />
+<span id="fileName" style="display: block; margin-top: 8px;">No file selected</span>
+<input type="file" id="fileInput" accept="image/png" hidden />
+
+
+    <img id="preview" src="#" alt="Preview" style="display: none;" />
+
+    <button id="uploadBtn">Upload</button>
+    <p class="status" id="statusMsg"></p>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
