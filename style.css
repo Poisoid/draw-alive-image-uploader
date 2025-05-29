@@ -1,3 +1,4 @@
+/* Base styles */
 body {
   font-family: Arial, sans-serif;
   background: #000000;
@@ -20,6 +21,7 @@ body {
   width: 90%;
 }
 
+/* Input fields */
 .input-field {
   width: 100%;
   padding: 10px 12px;
@@ -29,8 +31,10 @@ body {
   background: #111;
   color: white;
   font-size: 14px;
+  box-sizing: border-box;
 }
 
+/* File input label button */
 .custom-button {
   display: inline-block;
   background-color: #ac443c;
@@ -43,24 +47,27 @@ body {
   font-size: 16px;
   transition: background-color 0.3s ease;
   border: none;
+  user-select: none;
 }
 
 .custom-button:hover {
   background-color: #922f2a;
 }
 
+/* Preview image */
 #preview {
   max-width: 220px;
   max-height: 220px;
   margin: 15px auto;
-  display: block;
+  display: none; /* hidden by default */
   border: 2px solid #ac443c;
   border-radius: 8px;
   box-shadow: 0 0 10px #ac443c88;
   object-fit: contain;
 }
 
-button {
+/* Upload button */
+button#uploadBtn {
   background-color: #ac443c;
   border: none;
   padding: 12px 25px;
@@ -70,12 +77,15 @@ button {
   font-size: 16px;
   font-weight: 600;
   transition: background-color 0.3s ease;
+  margin-top: 20px;
+  width: 100%;
 }
 
-button:hover {
+button#uploadBtn:hover {
   background-color: #922f2a;
 }
 
+/* Status message */
 .status {
   margin-top: 15px;
   font-size: 14px;
