@@ -13,6 +13,8 @@ const preview = document.getElementById('preview');
 const fileNameLabel = document.getElementById('fileName');
 const status = document.getElementById('statusMsg');
 const uploadBtn = document.getElementById('uploadBtn');
+const userNameInput = document.getElementById('userName');
+const templateTypeSelect = document.getElementById('templateType');
 
 // Show preview when file is selected
 fileInput.addEventListener('change', () => {
@@ -33,14 +35,26 @@ fileInput.addEventListener('change', () => {
 
 uploadBtn.addEventListener('click', async () => {
   const file = fileInput.files[0];
+  const userName = userNameInput.value.trim();
+  const templateType = templateTypeSelect.value;
+
   if (!file) {
     alert('Please select a PNG file.');
     return;
   }
 
-  // Optional: Check file type explicitly
   if (file.type !== 'image/png') {
     alert('Only PNG files are allowed.');
+    return;
+  }
+
+  if (!userName) {
+    alert('Please enter your name.');
+    return;
+  }
+
+  if (!templateType) {
+    alert('Please select a template type.');
     return;
   }
 
@@ -68,21 +82,32 @@ uploadBtn.addEventListener('click', async () => {
 
   const imageUrl = publicData.publicUrl;
 
-  // Insert metadata record into your DB table
+  // Insert metadata record into your DB table, including name and template type
   const { error: dbError } = await supabase
     .from('images')
-    .insert([{ name: file.name, url: imageUrl }]);
+    .insert([
+      {
+        name: file.name,
+        url: imageUrl,
+        uploader_name: userName,
+        template_type: templateType
+      }
+    ]);
 
   if (dbError) {
     console.error('DB insert failed:', dbError.message);
-    status.textContent = '✅ Uploaded successfully!';
-    status.style.color = 'lightgreen';
+    status.textContent = '❌ Database insert failed.';
+    status.style.color = 'red';
     return;
   }
 
   status.textContent = '✅ Uploaded successfully!';
   status.style.color = 'lightgreen';
+
+  // Clear inputs and preview
   fileInput.value = '';
   preview.style.display = 'none';
   fileNameLabel.textContent = 'No file selected';
+  userNameInput.value = '';
+  templateTypeSelect.value = '';
 });

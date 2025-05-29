@@ -4,21 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Upload to Supabase</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <div class="container">
     <h2>Upload Your Drawing</h2>
 
     <label for="fileInput" class="custom-button">Choose PNG File</label>
-<br />
-<span id="fileName" style="display: block; margin-top: 8px;">No file selected</span>
-<input type="file" id="fileInput" accept="image/png" hidden />
-
+    <br />
+    <span id="fileName" style="display: block; margin-top: 8px;">No file selected</span>
+    <input type="file" id="fileInput" accept="image/png" hidden />
 
     <img id="preview" src="#" alt="Preview" style="display: none;" />
 
-    <button id="uploadBtn">Upload</button>
+    <!-- New inputs added here -->
+    <label for="userName" style="margin-top: 15px; display: block;">Your Name:</label>
+    <input type="text" id="userName" class="input-field" placeholder="Enter your name" />
+
+    <label for="templateType" style="margin-top: 15px; display: block;">Template Type:</label>
+    <select id="templateType" class="input-field">
+      <option value="">Select template type</option>
+      <option value="SOS Sign">SOS Sign</option>
+      <option value="Mascot">Mascot</option>
+    </select>
+
+    <button id="uploadBtn" style="margin-top: 20px;">Upload</button>
     <p class="status" id="statusMsg"></p>
   </div>
 
